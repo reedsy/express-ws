@@ -3,36 +3,42 @@ name: Test
 on:
   push:
     branches:
-    - master
+    - main
   pull_request:
     branches:
-    - master
+    - main
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
       with:
-        # Use PAT instead of default Github token, because the default
-        # token deliberately will not trigger another workflow run
-        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
+        node-version: 20
         registry-url: 'https://npm.pkg.github.com'
     - name: Install
-      # Skip post-install to avoid malicious scripts stealing PAT
-      run: npm install --ignore-script
-      env:
-        # GITHUB_TOKEN can't access packages hosted in private repos,
-        # even within the same organisation
-        NODE_AUTH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-    - name: Post-install
-      run: npm rebuild && npm run prepare --if-present
+      run: npm install
     - name: Lint
       run: npm run lint
-    - name: Tag
-      if: ${{ github.ref == 'refs/heads/master' }}
-      run: ./tag.sh
+
+  release:
+    needs:
+    - build
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://npm.pkg.github.com'
+      - name: Install
+        run: npm install
+      - name: Release
+        run: ./release.sh
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

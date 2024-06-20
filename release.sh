@@ -16,11 +16,7 @@ else
   echo "Deploying version $VERSION"
 fi
 
-echo '!/lib' >> .gitignore
-
-git checkout -b release-$VERSION
-git add .gitignore
-git add --all lib/
-git commit --message "Release version $VERSION"
 git tag $VERSION
 git push origin refs/tags/$VERSION
+
+npm publish
