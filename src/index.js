@@ -84,3 +84,5 @@ export default function expressWs(app, httpServer, options = {}) {
     }
   };
 }
+
+expressWs.addWsMethod = addWsMethod;
