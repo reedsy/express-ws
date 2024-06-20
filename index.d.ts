@@ -19,7 +19,6 @@ declare function expressWs(
     server?: http.Server | https.Server,
     options?: expressWs.Options,
 ): expressWs.Instance;
-expressWs.addWsMethod = function(target: RouterLike): void {};
 
 declare namespace expressWs {
     type Application = express.Application & WithWebsocketMethod;
@@ -44,4 +43,5 @@ declare namespace expressWs {
     }
 }
 
-export = expressWs;
+export default expressWs;
+export function addWsMethod(target: RouterLike): void;
