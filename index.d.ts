@@ -14,11 +14,13 @@ interface RouterLike {
     [key: number]: any;
 }
 
-declare function expressWs(
+export function expressWs(
     app: express.Application,
     server?: http.Server | https.Server,
     options?: expressWs.Options,
 ): expressWs.Instance;
+
+export function addWsMethod(target: RouterLike): void;
 
 declare namespace expressWs {
     type Application = express.Application & WithWebsocketMethod;
@@ -42,6 +44,3 @@ declare namespace expressWs {
         ws: WebsocketMethod<this>;
     }
 }
-
-export default expressWs;
-export function addWsMethod(target: RouterLike): void;
