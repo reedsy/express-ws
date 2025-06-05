@@ -7,8 +7,8 @@ import http from 'http';
 import express from 'express';
 import ws from 'ws';
 
-import websocketUrl from './websocket-url';
-import addWsMethod from './add-ws-method';
+import websocketUrl from './websocket-url.js';
+import addWsMethod from './add-ws-method.js';
 
 export default function expressWs(app, httpServer, options = {}) {
   let server = httpServer;
