@@ -1,4 +1,4 @@
-import trailingSlash from './trailing-slash';
+import trailingSlash from './trailing-slash.js';
 
 /* The following fixes HenningM/express-ws#17, correctly. */
 export default function websocketUrl(url) {

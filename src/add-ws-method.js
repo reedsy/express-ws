@@ -1,5 +1,5 @@
-import wrapMiddleware from './wrap-middleware';
-import websocketUrl from './websocket-url';
+import wrapMiddleware from './wrap-middleware.js';
+import websocketUrl from './websocket-url.js';
 
 export default function addWsMethod(target) {
   /* This prevents conflict with other things setting `.ws`. */
