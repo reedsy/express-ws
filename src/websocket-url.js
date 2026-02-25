@@ -1,11 +1,11 @@
-import trailingSlash from './trailing-slash.js';
+import { addTrailingSlash } from './trailing-slash.js';
 
 /* The following fixes HenningM/express-ws#17, correctly. */
-export default function websocketUrl(url) {
+export function websocketUrl(url) {
   if (url.indexOf('?') !== -1) {
     const [baseUrl, query] = url.split('?');
 
-    return `${trailingSlash(baseUrl)}.websocket?${query}`;
+    return `${addTrailingSlash(baseUrl)}.websocket?${query}`;
   }
-  return `${trailingSlash(url)}.websocket`;
+  return `${addTrailingSlash(url)}.websocket`;
 }

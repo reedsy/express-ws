@@ -1,18 +1,10 @@
 {
   "name": "@reedsy/express-ws",
-  "version": "5.0.0-reedsy-3.0.3",
+  "version": "5.0.0-reedsy-4.0.0",
   "description": "WebSocket endpoints for Express applications",
-  "exports": {
-    "require": {
-      "types": "./index.d.ts",
-      "default": "./index.cjs"
-    },
-    "import": {
-      "types": "./index.d.ts",
-      "default": "./index.mjs"
-    }
-  },
-  "module": "src/index",
+  "type": "module",
+  "module": "./index.js",
+  "types": "./index.d.ts",
   "scripts": {
     "lint": "eslint src/"
   },
