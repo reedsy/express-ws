@@ -1,6 +1,6 @@
 {
   "name": "@reedsy/express-ws",
-  "version": "5.0.0-reedsy-4.0.0",
+  "version": "5.0.0-reedsy-4.0.1",
   "description": "WebSocket endpoints for Express applications",
   "type": "module",
   "module": "./index.js",
