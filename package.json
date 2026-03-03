@@ -1,9 +1,9 @@
 {
   "name": "@reedsy/express-ws",
-  "version": "5.0.0-reedsy-4.0.1",
+  "version": "5.0.0-reedsy-4.0.2",
   "description": "WebSocket endpoints for Express applications",
   "type": "module",
-  "module": "./index.js",
+  "main": "./index.js",
   "types": "./index.d.ts",
   "scripts": {
     "lint": "eslint src/"
