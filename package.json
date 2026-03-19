@@ -1,6 +1,6 @@
 {
   "name": "@reedsy/express-ws",
-  "version": "5.0.0-reedsy-5.0.0",
+  "version": "5.0.0-reedsy-5.1.0",
   "description": "WebSocket endpoints for Express applications",
   "type": "module",
   "main": "./index.js",
@@ -25,7 +25,7 @@
     "ws": "^8.0.0"
   },
   "peerDependencies": {
-    "express": "^4.0.0 || ^5.0.0-alpha.1"
+    "express": "^4.0.0 || ^5.0.0"
   },
   "engines": {
     "node": ">=4.5.0"
@@ -46,6 +46,6 @@
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.29.1",
-    "express": "^5.0.0-alpha.6"
+    "express": "^5.0.0"
   }
 }
