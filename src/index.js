@@ -30,11 +30,22 @@ export function expressWs(app, httpServer, options = {}) {
    * when using the standard Express Router, to use the `.ws` method without any further calls
    * to `makeRouter`. When using a custom router, the use of `makeRouter` may still be necessary.
    *
-   * This approach works, because Express does a strange mixin hack - the Router factory
-   * function is simultaneously the prototype that gets assigned to the resulting Router
-   * object. */
+   * Express 4 and Express 5 lay this out differently:
+   *   - In Express 4, the `Router` factory function doubles as the prototype object - new
+   *     routers are linked to it via `setPrototypeOf(router, Router)` and the routing methods
+   *     are assigned directly onto `Router`. Patching `Router` itself is therefore enough.
+   *   - In Express 5, the routing methods live on `Router.prototype` (a function-as-prototype
+   *     object), and instances inherit from a `new Router()` whose own prototype is
+   *     `Router.prototype`. Patching `Router` itself no longer reaches instances; we have to
+   *     patch `Router.prototype` instead.
+   *
+   * Detect Express 5 by the presence of routing methods on the prototype, and patch whichever
+   * target actually sits on the lookup chain that `router.ws(...)` resolves through. */
   if (!options.leaveRouterUntouched) {
-    addWsMethod(express.Router);
+    const routerPrototype = (express.Router.prototype && typeof express.Router.prototype.get === 'function')
+      ? express.Router.prototype
+      : express.Router;
+    addWsMethod(routerPrototype);
   }
 
   // allow caller to pass in options to WebSocketServer constructor
