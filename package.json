@@ -20,7 +20,7 @@
   ],
   "license": "BSD-2-Clause",
   "dependencies": {
-    "@types/express-ws": "^3.0.4",
+    "@types/express-ws": "^3.0.6",
     "esm": "^3.2.25",
     "ws": "^8.0.0"
   },
