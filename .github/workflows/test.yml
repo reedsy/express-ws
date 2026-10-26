@@ -19,7 +19,7 @@ jobs:
         node-version-file: '.nvmrc'
         registry-url: 'https://npm.pkg.github.com'
     - name: Install
-      run: npm install
+      run: npm ci --ignore-scripts
     - name: Lint
       run: npm run lint
 
@@ -35,8 +35,6 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           registry-url: 'https://npm.pkg.github.com'
-      - name: Install
-        run: npm install
       - name: Release
         run: ./release.sh
         env:
