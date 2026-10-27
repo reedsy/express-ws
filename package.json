@@ -43,9 +43,10 @@
     "websocket"
   ],
   "devDependencies": {
-    "eslint": "^8.57.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-plugin-import": "^2.29.1",
-    "express": "^5.0.0"
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "eslint": "^10.13.0",
+    "express": "^5.0.0",
+    "globals": "^17.13.0"
   }
 }
